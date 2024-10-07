@@ -3,18 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const logList = document.getElementById('logList');
     const totalLogs = document.getElementById('totalLogs');
 
-    let logCount = 0;
+    let logs = [];
 
     logButton.addEventListener('click', () => {
-        const now = new Date();
-        const logEntry = `Log ${logCount + 1}: ${now.toLocaleString()}`;
+        const currentDate = new Date().toLocaleString();
+        const logMessage = `${currentDate} - New log added!`;
 
-        const li = document.createElement('li');
-        li.textContent = logEntry;
+        logs.push(logMessage);
 
-        logList.appendChild(li);
-
-        logCount++;
-        totalLogs.textContent = logCount;
+        updateLogDisplay();
     });
+
+    function updateLogDisplay() {
+        logList.innerHTML = ''; 
+        logs.forEach(log => {
+            const listItem = document.createElement('li');
+            listItem.textContent = log;
+            logList.appendChild(listItem);
+        });
+
+       
+        totalLogs.textContent = logs.length;
+    }
 });
