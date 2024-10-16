@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Name Logging Applet",
+        "description": "A simple applet to log names and display the total.",
+        "link": "name-logging-applet/index.html",
+        "image": "logo.JPG"
+    },
+    {
+        "title": "Leaflet Map Applet",
+        "description": "An interactive map applet using Leaflet and OpenStreetMap.",
+        "link": "leaflet-applet/index.html",
+        "image": "logo.JPG"
+    }
+]
