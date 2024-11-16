@@ -1,43 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Driven Programming Library</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Driven Programming Library</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Event Driven Programming Library</h1>
-        <input type="text" id="searchInput" placeholder="Search applets..." />
-        <button onclick="searchApplets()">Search</button>
-    </header>
-    <main class="gallery-container">
-        <div class="applet-card" onclick="loadApplet(1)">
-            <img src="icons/lightbulb.png" alt="Basic Events">
-            <h3>Applet 1 - Basic Events</h3>
-        </div>
-        <div class="applet-card" onclick="loadApplet(2)">
-            <img src="icons/map.png" alt="Leaflet Map">
-            <h3>Applet 2 - Leaflet Map</h3>
-        </div>
-        <div class="applet-card" onclick="loadApplet(3)">
-            <img src="icons/target.png" alt="Event Button Logger">
-            <h3>Applet 3 - Event Button Logger</h3>
-        </div>
-        <div class="applet-card" onclick="loadApplet(4)">
-            <img src="icons/code.png" alt="Dynamic Elements">
-            <h3>Applet 4 - Dynamic Elements</h3>
-        </div>
-        <div class="applet-card" onclick="loadApplet(5)">
-            <img src="icons/weather.png" alt="OpenWeather API">
-            <h3>Applet 5 - OpenWeather API</h3>
-        </div>
-        <div class="applet-card" onclick="loadApplet(6)">
-            <img src="icons/todo.png" alt="Todo List">
-            <h3>Applet 6 - Todo List</h3>
-        </div>
-    </main>
-    <script src="script.js"></script>
+  <h1>Event Driven Programming Library</h1>
+  <input type="text" placeholder="Search applets..." id="search-box">
+  <button>Search</button>
+  <div class="applet-container">
+    <a href="applet1.html" class="applet-card">Applet 1 - Basic Events</a>
+    <a href="applet2.html" class="applet-card">Applet 2 - Leaflet Map</a>
+    <a href="applet3.html" class="applet-card">Applet 3 - Event Button Logger</a>
+    <a href="applet4.html" class="applet-card">Applet 4 - Dynamic Elements</a>
+    <a href="applet5.html" class="applet-card">Applet 5 - OpenWeather API</a>
+    <a href="applet6.html" class="applet-card">Applet 6 - Todo List</a>
+  </div>
 </body>
 </html>
