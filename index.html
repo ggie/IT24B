@@ -86,5 +86,10 @@
     <div class="applet-flex-container"  id="applet-container"></div>
 
 <script src="applets.js"></script>
+document.addEventListener("DOMContentLoaded", function() {
+  const appletRenderer = new AppletRenderer('applet-container', 'searchApplet');
+  appletRenderer.fetchAppletData('applets.json');
+});
+
 </body>
 </html>
