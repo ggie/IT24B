@@ -9,56 +9,60 @@ class AppletCard {
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card applet-card';
         cardDiv.innerHTML = `
-            <div class="card-body">
-                <h5 class="card-title">${this.title}</h5>
-                <p class="card-text">${this.description}</p>
-                <a href="${this.link}" class="btn btn-primary applet-btn" style="">Go to Applet</a>
-            </div>
+            <a href="${this.link}" class="applet-card-link">
+                <div class="card-body">
+                    <h5 class="card-title">${this.title}</h5>
+                </div>
+                <div class="tooltip-message">${this.description}</div>
+            </a>
         `;
         return cardDiv;
     }
 }
 
 class AppletRenderer {
-    constructor(containerId,searchInputId) {
+    constructor(containerId, searchId) {
         this.container = document.getElementById(containerId);
-
-        //
-        this.searchInput = document.getElementById(searchInputId);
-        this.appletData = [];
-        this.filteredData = [];
-        this.searchInput.addEventListener('input',()=> this.filterApplets());
+        this.searchInput = document.getElementById(searchId);
+        this.applets = [];
     }
 
     fetchAppletData(url) {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                this.appletData = data;
-                this.filteredData = data;
-                this.renderApplets(this.filteredData);
+                this.applets = data;
+                this.renderApplets();
             })
-            .catch(error => console.error('Error loading applet data:', error));
+            .catch(error => console.error('Error fetching applet data:', error));
     }
 
-    renderApplets(data) {
+    renderApplets() {
         this.container.innerHTML = '';
-        data.forEach(applet => {
+        this.applets.forEach(applet => {
             const appletCard = new AppletCard(applet.title, applet.description, applet.link);
-            const cardElement = appletCard.createCard();
-            this.container.appendChild(cardElement);
+            this.container.appendChild(appletCard.createCard());
+        });
+
+        this.addSearchListener();
+    }
+
+    addSearchListener() {
+        this.searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredApplets = this.applets.filter(applet =>
+                applet.title.toLowerCase().includes(searchTerm) ||
+                applet.description.toLowerCase().includes(searchTerm)
+            );
+            this.renderFilteredApplets(filteredApplets);
         });
     }
 
-    filterApplets(){
-        const query = this.searchInput.value.toLowerCase();
-        this.filteredData = this.appletData.filter(applet =>
-            applet.title.toLowerCase().includes(query) ||
-            applet.description.toLowerCase().includes(query)
-        );
-        this.renderApplets(this.filteredData);
+    renderFilteredApplets(filteredApplets) {
+        this.container.innerHTML = '';
+        filteredApplets.forEach(applet => {
+            const appletCard = new AppletCard(applet.title, applet.description, applet.link);
+            this.container.appendChild(appletCard.createCard());
+        });
     }
 }
-
-const appletRenderer = new AppletRenderer('applet-container','searchApplet');
-appletRenderer.fetchAppletData('applets.json');
